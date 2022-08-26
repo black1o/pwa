@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<style>
+* {
+	margin: 0;
+	padding: 0;
+}
+:root {
+	--light-blue: #01acf0;
+	--dark-blue: #2e3192
+}
+.dataInput {
+	display: flex;
+	flex-direction: column;
+	gap: .5rem;
+	padding: .5rem;
+}
+.dataInput input {
+	padding: .5rem;
+	border-radius: 3px;
+	border: 1px solid rgba(0,0,0,.5);
+}
+.dataInput input:focus {
+	border-radius: 3px;
+	outline: none;
+	border: 1.8px solid orange;
+}
+.dataInput input[type=button] {
+	/* style button */
+} 
+.downloadButton {
+	padding: .5rem;
+	margin: .5rem;
+}
+#exportPdf {
+	border: 1px solid #000;
+	margin: .5rem;
+}
+.head {
+	display: flex;
+	justify-content: space-between;
+	padding: .5rem;
+}
+.head .headLeft img {
+	width: 60%;
+}
+.main {
+	display: flex;
+	justify-content: space-between;
+	padding: .5rem;
+	border-top: 1px dashed #000;
+	border-bottom: 1px dashed #000;
+}
+.mainTable tr td:nth-child(1) {
+	font-weight: bold;
+	text-align: right;
+}
+.mainTable tr td:nth-child(2) {
+	padding-left: 3rem;
+}
+.reportTable {
+	width: 100%;
+	border-collapse:collapse;
+	height: 20vh;
+	background-image: url("logo.icon.png");
+	background-position: center center;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+.reportTable caption {
+	margin: .5rem;
+	font-weight: bold;
+}
+.reportTable th {
+	border-top:2px solid #f1c40f;
+	border-bottom:2px solid #f1c40f; 
+	padding: .5rem;
+	background-color: rgb(241,196,15,.3);
+}
+.reportTable td {
+	padding: .5rem;
+	/*border-left: 1px dashed #000;*/
+	/*border-bottom: 1px solid #000;*/
+	text-align: center;
+	vertical-align: top;
+}
+.reportTable td:nth-child(1) {
+	border-left: none;
+	vertical-align: top;
+	text-align: left;
+}
+.footer span {
+	font-weight: bold;
+	padding: .5rem;
+	/*border-top: 1px solid #000;*/
+	/*display: flex;*/
+}
+.footer p {
+	color: rgba(0,0,0,.5);
+	font-size: .7em;
+	padding: .5rem;
+	font-style: italic;
+}
+/* better view for mobile device */
+@media only screen and (max-width: 600px) {
+	.head div {
+		font-size: .8em;
+     }
+     .mainTable {
+     	font-size: .8em;
+     }
+     .mainTable tr td:nth-child(2) {
+     	padding-left: .5rem;
+     }
+}
+</style>
+</head>
+<body>
+<!-- data input section -->
+<div class="dataInput">
+	<h3>Basic Details</h3>
+	<input type="text" name="name" id="name" placeholder="Name">
+	<input type="text" name="sex" id="sex" placeholder="Sex">
+	<input type="number" name="age" id="age" placeholder="Age">
+	<input type="number" name="reportid" id="reportid" placeholder="Report ID">
+	<span class="inputText">Sample Date:</span>
+	<input type="date" name="sampledate" id="sampledate">
+	<span class="inputText">Report Released Date:</span>
+	<input type="date" name="reportdate" id="reportdate">
+		
+	<h3>Other Details:</h3>
+	<input type="text" name="prefed" id="prefed" placeholder="Self or By Doctor">
+	<input type="text" name="remark" id="remark" placeholder="Remark">
+		
+	<h3>Report Result:</h3>
+	<input type="text" name="testname" id="testname" placeholder="Test Name">
+	<input type="text" name="unit" id="unit" placeholder="Unit">
+	<input type="text" name="result" id="result" placeholder="Result">
+	<input type="text" name="other" id="other" placeholder="Other">
+		
+	<input type="button" onclick="myFunction ()" value="Preview Report">
+</div>
+<!-- data input section end -->
+	
+	<br><br>
+	
+<!-- report body [#exportPdf] -->
+<div id="exportPdf">
+<!-- head section -->
+<div class="head">
+	<!-- ============================== -->
+	<div class="headLeft">
+		<img src="logo.png" alt="logo"><br><br>
+		38/203 Lime Street <br>
+		Near LD Centre <br>
+		T9-X (Mars) 220000 <br>
+		+001 99000 99000
+    </div>
+    <!-- ============================== -->
+    <div class="headRight">
+    	<b>Prefed By:</b><br>
+        <span id="prefedOutput">Dr. Ravi Deenkar</span><br>
+        <span id="remarkOutput">AIMS, Kanpur</span>
+    </div>
+    <!-- ============================== -->
+</div>
+<!-- head section end -->
+
+<!-- basic information section -->
+<div class="main">
+	<!-- ============================== -->
+	<div class="mainLeft">
+		
+	<table class="mainTable">
+	<tbody>
+	<tr>
+		<td>Name:</td>
+		<td id="nameOutput">Amit</td>
+	</tr>
+	<tr>
+		<td>Sex:</td>
+		<td id="sexOutput">Male</td>
+	</tr>
+	<tr>
+		<td>Age:</td>
+		<td id="ageOutput">21</td>
+	</tr>
+	</tbody>
+    </table>
+    
+    </div>
+    <!-- ============================== -->
+    <div class="mainRight">
+    <table class="mainTable">
+	<tbody>
+	<tr>
+		<td>Report ID:</td>
+		<td id="reportidOutput">00061</td>
+	</tr>
+	<tr>
+		<td>Sample Collection Date:</td>
+		<td id="sampledateOutput">18/08/2022</td>
+	</tr>
+	<tr>
+		<td>Report Released Date:</td>
+		<td id="reportdateOutput">19/08/2022</td>
+	</tr>
+	</tbody>
+    </table>
+    </div>
+    <!-- ============================== -->
+</div>
+<!-- basic information section end -->
+
+<!-- final report -->
+<div class="report">
+	<table class="reportTable">
+	<caption>Final Report</caption>
+	<thead>
+	<tr>
+		<th>Test Name</th>
+		<th>Unit</th>
+		<th>Result</th>
+		<th>Other</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+		<td id="testnameOutput">Testname</td>
+		<td id="unitOutput">Unit</td>
+		<td id="resultOutput">Result</td>
+		<td id="otherOutput">Other</td>
+	</tr>
+	</tbody>
+</table>
+</div>
+<!-- final report end -->
+
+<!-- footer section -->
+<div class="footer">
+<center><b>END REPORT</b></center><br><br><br>
+<span>Thank You for business with us.</span>
+<p>
+Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the
+</p>
+</div>
+<!-- footer section end  -->
+</div>
+<!-- report body [#exportPdf] end -->
+
+<!-- pdf download button -->
+<input type="button" onclick='exportPdf ()' value="Download Report" class="downloadButton">
+
+<script>
+function myFunction() {
+	var name = document.getElementById('name').value;
+	var sex = document.getElementById('sex').value;
+	var age = document.getElementById('age').value;
+	var reportid = document.getElementById('reportid').value;
+	var sampledate = document.getElementById('sampledate').value;
+	var reportdate = document.getElementById('reportdate').value;
+	var prefed = document.getElementById('prefed').value;
+	var remark = document.getElementById('remark').value;
+	var testname = document.getElementById('testname').value;
+	var unit = document.getElementById('unit').value;
+	var result = document.getElementById('result').value;
+	var other = document.getElementById('other').value;
+	
+    document. getElementById("nameOutput"). innerHTML = name;
+    document. getElementById("sexOutput"). innerHTML = sex;
+    document. getElementById("ageOutput"). innerHTML = age;
+    document. getElementById("reportidOutput"). innerHTML = reportid;
+    document. getElementById("sampledateOutput"). innerHTML = sampledate;
+    document. getElementById("reportdateOutput"). innerHTML = reportdate;
+    document. getElementById("prefedOutput"). innerHTML = prefed;
+    document. getElementById("remarkOutput"). innerHTML = remark;
+    document. getElementById("testnameOutput"). innerHTML = testname;
+    document. getElementById("unitOutput"). innerHTML = unit;
+    document. getElementById("resultOutput"). innerHTML = result;
+    document. getElementById("otherOutput"). innerHTML = other;
+}
+</script>
+<script>
+function exportPdf() {
+var element = document.getElementById('exportPdf');
+var opt = {
+  margin:       1,
+  filename:     'myfile.pdf',
+  image:        { type: 'jpeg', quality: 0.98 },
+  html2canvas:  { scale: 2 },
+   jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+   };
+   // New Promise-based usage:
+   html2pdf().set(opt).from(element).save();
+
+   // Old monolithic-style usage:
+   html2pdf(element, opt);
+}
+</script>
+</body>
+</html>
