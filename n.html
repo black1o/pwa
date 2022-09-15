@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<style>
+* {
+	margin: 0;
+	padding: 0;
+}
+.full-screen {
+	height: 100vh;
+	width: 100%;
+	background: #000;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.main {
+	height: 4rem;
+	width: 4rem;
+	background: #000;
+	background-size: cover;
+	animation: xox 30s;
+}
+@keyframes xox {
+	0% {
+		background-image: url('1.png');
+		transform: rotate(0deg);
+        }
+    9% {
+        transform: rotate(360deg);
+        background-image: url('1.png');
+        }
+    10% {
+    	background-image: url('2.png');
+        }
+     19% {
+     	transform: rotate(720deg);
+         background-image: url('2.png');
+         }
+       20% {
+       	background-image: url('3.png');
+           }
+        29% {
+        	transform: rotate(1080deg);
+            background-image: url('3.png');
+        }
+        30% {
+        	background-image: url('4.png');
+            }
+         39% {
+         	transform: rotate(1440deg);
+             background-image: url('4.png');
+            }
+          40% {
+          	background-image: url('5.png');
+            }
+          49% {
+          	transform: rotate(1800deg);
+              background-image: url('5.png');
+            }
+          50% {
+          	background-image: url('6.png');
+            }
+          59% {
+          	background-image: url('6.png');
+              transform: rotate(2160deg);
+          }
+          60% {
+          	background-image: url('7.png');
+          }
+          69% {
+          	background-image: url('7.png');
+              transform: rotate(2520deg);
+          }
+          70% {
+          	background-image: url('8.png');
+          }
+          79% {
+          	background-image: url('8.png');
+              transform: rotate(2880deg);
+          }
+          80% {
+          	background-image: url('9.png');
+          }
+          89% {
+          	background-image: url('9.png');
+              transform: rotate(3240deg);
+          }
+          90% {
+          	background-image: url('10.png');
+          }
+          100% {
+          	background-image: url('10.png');
+              transform: rotate(3600deg);
+          }
+}
+</style>
+</head>
+<body>
+<div class="full-screen">
+	<div class="main"></div>
+</div>
+ </body>
+</html>
